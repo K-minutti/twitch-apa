@@ -1,14 +1,20 @@
 import express, { Request, Response, NextFunction } from "express";
+import path from "path";
 const app = express();
+
 const PORT: number = 8000;
 
-// Body parsing middleware
+// Middleware
+// Body parsing
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Serving static files
+app.use(express.static(path.join(__dirname, "../public")));
+
 // Root
 app.get("/", (req: Request, res: Response): void => {
-  res.json({ message: "ROOT IS LIVE! HELLO" });
+  res.sendFile(path.join(__dirname, "../public/index.html"));
 });
 
 app.listen(PORT, (): void => {
