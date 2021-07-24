@@ -18,8 +18,10 @@ const Login: React.FC = () => {
     <div className="landingContainer">
       <img src="../../assets/apalanding-logo.png" />
       <button>
-        <img className="spotifyIcon" src="../../assets/Spotify_Icon.png" />
-        Login With Spotify
+        <a href="/login">
+          <img className="spotifyIcon" src="../../assets/Spotify_Icon.png" />
+          Login With Spotify
+        </a>
       </button>
       <img className="waves" src="../../assets/waves.png" />
     </div>

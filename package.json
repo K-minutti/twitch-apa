@@ -9,7 +9,7 @@
     "start": "npm run build:prod && npm run server",
     "server": "tsc -p tsconfig.server.json && node server/",
     "dev": "npm run client & nodemon",
-    "dev-server": "nodemon",
+    "dev:server": "nodemon",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
