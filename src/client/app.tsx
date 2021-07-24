@@ -1,11 +1,9 @@
 import React from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <h1>HELLO</h1>
-    </div>
-  );
-}
+const isLoggedIn: boolean = true;
+
+const App: React.FC = () => {
+  return <div>{isLoggedIn ? <h1>Hi, your in!</h1> : <h1>Login !</h1>}</div>;
+};
 
 export default App;
