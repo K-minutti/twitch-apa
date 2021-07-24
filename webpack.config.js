@@ -5,7 +5,7 @@ module.exports = {
   devtool: "source-map",
   output: {
     filename: "bundle.js",
-    path: path.join(__dirname, "public"),
+    path: path.join(__dirname, "dist"),
   },
   watchOptions: {
     ignored: /node_modules/,
