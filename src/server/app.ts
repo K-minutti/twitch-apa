@@ -8,7 +8,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Serving static files
-app.use(express.static(path.join(__dirname, "../dist/assets")));
+app.use(express.static(path.join(__dirname, "../dist/")));
 
 // Root
 app.get("/", (req: Request, res: Response, next: NextFunction): void => {

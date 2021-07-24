@@ -14,24 +14,15 @@ const theme = createTheme({
 });
 
 const Login: React.FC = () => {
-  const styleClasses = useStyles();
   return (
-    <ThemeProvider theme={theme}>
-      <div className={styleClasses.container}>
-        <img src="../../assets/apalanding-logo.png" />
-        <Button
-          className={styleClasses.root}
-          variant="contained"
-          color="primary"
-        >
-          <img
-            className={styleClasses.spotifyLogo}
-            src="../../assets/Spotify_Icon.png"
-          />
-          Login With Spotify
-        </Button>
-      </div>
-    </ThemeProvider>
+    <div className="landingContainer">
+      <img src="../../assets/apalanding-logo.png" />
+      <button>
+        <img className="spotifyIcon" src="../../assets/Spotify_Icon.png" />
+        Login With Spotify
+      </button>
+      <img className="waves" src="../../assets/waves.png" />
+    </div>
   );
 };
 
