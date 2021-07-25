@@ -7,17 +7,13 @@ export type Credentials = {
 
 const allScopes: string[] = [
   "streaming",
-  "user-read-mail",
+  "user-top-read",
+  "user-read-email",
   "user-read-private",
   "user-library-read",
-  "user-top-read",
-  "user-read-recently-played",
-  "user-read-currently-playing",
-  "user-read-playback-position",
   "user-read-playback-state",
+  "user-read-currently-playing",
   "user-modify-playback-state",
-  "playlist-read-private",
-  "playlist-read-collaborative",
 ];
 
 export const credentials: Credentials = {
