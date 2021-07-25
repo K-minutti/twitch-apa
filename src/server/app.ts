@@ -2,6 +2,7 @@ import express, { Request, Response, NextFunction } from "express";
 import { SpotifyApiWrapper } from "./spotify/spotifyApi";
 import { credentials } from "./spotify/spotifyCredentials";
 import authRouter from "./auth";
+import apiRouter from "./api";
 import path from "path";
 
 const app = express();
@@ -17,7 +18,7 @@ app.use(express.static(path.join(__dirname, "../dist/")));
 
 /* Routes */
 app.use("/auth", authRouter);
-// app.user('/api', require(());
+app.use("/api", apiRouter);
 
 /* Spotify Authentication */
 app.get("/login", (req: Request, res: Response, next: NextFunction): void => {
