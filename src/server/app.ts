@@ -3,6 +3,7 @@ import { SpotifyApiWrapper } from "./spotify/spotifyApi";
 import { credentials } from "./spotify/spotifyCredentials";
 import authRouter from "./auth";
 import path from "path";
+
 const app = express();
 
 export const SpotifyApi = new SpotifyApiWrapper(credentials);
