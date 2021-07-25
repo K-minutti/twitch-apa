@@ -1,37 +1,42 @@
-import express, { Request, Response, NextFunction } from "express";
 import dotenv from "dotenv";
-import path from "path";
 dotenv.config();
 
+import express, { Request, Response, NextFunction } from "express";
+import { SpotifyApiWrapper } from "./spotify/spotifyApi";
+import { credentials } from "./spotify/spotifyCredentials";
+import path from "path";
 const app = express();
 
-const my_client_id = process.env.CLIENT_ID!;
-const redirect_uri = process.env.REDIRECT_URI!;
+export const SpotifyApi = new SpotifyApiWrapper(credentials);
 
-/* Middleware */
-// Body parsing
+/* Middleware  - Body parsing */
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Serving static files
+/* Static files */
 app.use(express.static(path.join(__dirname, "../dist/")));
 
-//
+/* Spotify Authentication */
 app.get("/login", (req: Request, res: Response, next: NextFunction): void => {
-  const scopes: string = "user-read-private user-read-email";
-  res.redirect(
-    "https://accounts.spotify.com/authorize" +
-      "?response_type=code" +
-      "&client_id=" +
-      my_client_id +
-      (scopes ? "&scope=" + encodeURIComponent(scopes) : "") +
-      "&redirect_uri=" +
-      encodeURIComponent(redirect_uri)
-  );
+  const authorizeURL: string = SpotifyApi.getAuthorizeURL();
+  res.redirect(authorizeURL);
 });
 
+/* Spotify Auth Callback - Getting and setting tokens on SpotifyApi for future requests */
 app.get("/success", (req: Request, res: Response, next: NextFunction): void => {
-  res.send("YOU LOGGED IN!");
+  const code: string = String(req.query.code);
+  SpotifyApi.getAccessToken(code);
+  res.redirect("/");
+});
+
+app.get("/refresh", (req: Request, res: Response, next: NextFunction): void => {
+  SpotifyApi.refreshAccessToken();
+  res.sendStatus(200);
+});
+
+app.get("/logout", (req: Request, res: Response, next: NextFunction): void => {
+  SpotifyApi.resetAccess();
+  res.status(200).redirect("/");
 });
 
 // Root
