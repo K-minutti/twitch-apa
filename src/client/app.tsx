@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Login from "./components/Login";
 import Home from "./components/Home";
-
-const isLoggedIn: boolean = false;
+import { isLoggedIn } from "./controllers/auth";
 
 const App: React.FC = () => {
-  return <div>{!isLoggedIn ? <Login /> : <Home />}</div>;
+  const [isAuthenticated, setAuthentication] = useState(false);
+
+  useEffect(() => {
+    isLoggedIn().then(setAuthentication);
+  }, [isAuthenticated]);
+
+  return <div>{isAuthenticated ? <Home /> : <Login />}</div>;
 };
 
 export default App;

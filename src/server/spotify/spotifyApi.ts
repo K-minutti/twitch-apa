@@ -88,6 +88,12 @@ export class SpotifyApiWrapper {
       });
   }
 
+  isUserAuthorized(): boolean {
+    const authorized: boolean =
+      this.accessToken != "" && this.refreshToken != "" && this.expiresIn != 0;
+    return authorized;
+  }
+
   resetAccess(): void {
     this.accessToken = "";
     this.refreshToken = "";
