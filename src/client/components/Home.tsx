@@ -1,7 +1,5 @@
 import React from "react";
 
-//Load user data to greet user by name
-
 const Home: React.FC = () => {
   return (
     <div>
@@ -12,6 +10,16 @@ const Home: React.FC = () => {
       <button>
         <a href="/api">Logout</a>
       </button>
+      <figure>
+        <figcaption>Spotify preview url test</figcaption>
+        <audio
+          controls
+          src="https://p.scdn.co/mp3-preview/0a128a305bb16b4e731f5d839f4cdb22d247f1dd?"
+        >
+          Your browser does not support the
+          <code>audio</code> element.
+        </audio>
+      </figure>
     </div>
   );
 };
