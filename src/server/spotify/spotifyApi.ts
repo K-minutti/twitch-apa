@@ -1,4 +1,4 @@
-import { Credentials } from "./spotifyCredentials";
+import { Credentials } from "./types/credentials";
 import { Buffer } from "buffer";
 import axios from "axios";
 

@@ -26,7 +26,7 @@ app.get("/login", (req: Request, res: Response, next: NextFunction): void => {
   res.redirect(authorizeURL);
 });
 
-/* Spotify Auth Callback - Getting and setting tokens on SpotifyApi for future requests */
+/* Spotify Auth Callback - Getting and setting tokens on SpotifyApi class for future requests */
 app.get("/success", (req: Request, res: Response, next: NextFunction): void => {
   const code: string = String(req.query.code);
   spotifyApi.getAccessToken(code);
