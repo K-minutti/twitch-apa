@@ -1,11 +1,8 @@
 import axios from "axios";
-
-type AuthResponse = {
-  authorized: boolean;
-};
+import { AuthenticationResponse } from "./types/controllers";
 
 export const isLoggedIn = async (): Promise<boolean> => {
   return axios
-    .get<AuthResponse>("/auth")
+    .get<AuthenticationResponse>("/auth")
     .then((response) => response.data["authorized"]);
 };
