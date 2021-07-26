@@ -1,18 +1,5 @@
 import axios from "axios";
-
-type tracksResponse = {
-  href: string;
-  items: any[];
-  limit: number;
-  next: string;
-  offset: number;
-  pervious: null | string;
-  total: number;
-};
-
-type searchResults = {
-  tracks: tracksResponse;
-};
+import { SearchResults } from "./types/spotifyServices";
 
 export class SpotifyServices {
   servicesURL: string = "https://api.spotify.com/v1/";
@@ -21,11 +8,11 @@ export class SpotifyServices {
     return "Josh";
   }
 
-  // 50 is max limit per spotify
+  // limit is 50 per spotify api
   search(
     authorizatonParameter: string,
     queryParamters: string
-  ): Promise<searchResults> {
+  ): Promise<SearchResults> {
     return axios({
       url: this.servicesURL + "search?",
       method: "GET",

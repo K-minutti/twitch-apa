@@ -10,6 +10,7 @@ apiRouter.get(
   (req: Request, res: Response, next: NextFunction): void => {
     const headerAuthorization: string =
       spotifyApi.getServicesAuthorizationHeader();
+
     const user: string = spotifyServices.getUser(headerAuthorization);
     res.json({
       message: "You hit the /api/user endpoint for the user " + user,
@@ -20,10 +21,10 @@ apiRouter.get(
 apiRouter.get(
   "/search",
   (req: Request, res: Response, next: NextFunction): void => {
+    const queryParams: string = String(req.query.q);
     const headerAuthorization: string =
       spotifyApi.getServicesAuthorizationHeader();
 
-    const queryParams: string = String(req.query.q);
     spotifyServices
       .search(headerAuthorization, queryParams)
       .then((response) => {

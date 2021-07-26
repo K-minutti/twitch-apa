@@ -1,9 +1,4 @@
-export type Credentials = {
-  clientId: string;
-  clientSecret: string;
-  redirectURI: string;
-  scopes: string;
-};
+import { Credentials } from "./types/credentials";
 
 const allScopes: string[] = [
   "streaming",
