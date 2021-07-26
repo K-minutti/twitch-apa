@@ -12,7 +12,6 @@ export class SpotifyApiWrapper {
   refreshToken: string = "";
   expiresIn: number = 0;
   accountURL: string = "https://accounts.spotify.com/";
-  servicesURL: string = "https://api.spotify.com/v1/";
 
   constructor(credentials: Credentials) {
     this.clientId = credentials.clientId;
@@ -99,5 +98,9 @@ export class SpotifyApiWrapper {
     this.refreshToken = "";
     this.tokenType = "";
     this.expiresIn = 0;
+  }
+
+  getServicesAuthorizationHeader(): string {
+    return this.tokenType + " " + this.accessToken;
   }
 }
