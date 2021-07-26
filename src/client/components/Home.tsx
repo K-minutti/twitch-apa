@@ -1,15 +1,11 @@
 import React from "react";
+import Navigation from "./Navigation";
 
 const Home: React.FC = () => {
   return (
     <div>
+      <Navigation />
       <h1>Hello! Welcome home.</h1>
-      <button>
-        <a href="/logout">Logout</a>
-      </button>
-      <button>
-        <a href="/api">Logout</a>
-      </button>
       <figure>
         <figcaption>Spotify preview url test</figcaption>
         <audio

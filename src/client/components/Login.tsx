@@ -15,11 +15,11 @@ const theme = createTheme({
 
 const Login: React.FC = () => {
   return (
-    <div className="landingContainer">
+    <div className="landing-container">
       <img src="../../assets/apalanding-logo.png" />
       <button>
         <a href="/login">
-          <img className="spotifyIcon" src="../../assets/Spotify_Icon.png" />
+          <img className="spotify-icon" src="../../assets/Spotify_Icon.png" />
           Login With Spotify
         </a>
       </button>
