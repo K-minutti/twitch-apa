@@ -7,7 +7,7 @@ import path from "path";
 
 const app = express();
 
-export const SpotifyApi = new SpotifyApiWrapper(credentials);
+export const spotifyApi = new SpotifyApiWrapper(credentials);
 
 /* Middleware  - Body parsing */
 app.use(express.json());
@@ -22,24 +22,24 @@ app.use("/api", apiRouter);
 
 /* Spotify Authentication */
 app.get("/login", (req: Request, res: Response, next: NextFunction): void => {
-  const authorizeURL: string = SpotifyApi.getAuthorizeURL();
+  const authorizeURL: string = spotifyApi.getAuthorizeURL();
   res.redirect(authorizeURL);
 });
 
 /* Spotify Auth Callback - Getting and setting tokens on SpotifyApi for future requests */
 app.get("/success", (req: Request, res: Response, next: NextFunction): void => {
   const code: string = String(req.query.code);
-  SpotifyApi.getAccessToken(code);
+  spotifyApi.getAccessToken(code);
   res.redirect("/");
 });
 
 app.get("/refresh", (req: Request, res: Response, next: NextFunction): void => {
-  SpotifyApi.refreshAccessToken();
+  spotifyApi.refreshAccessToken();
   res.sendStatus(200);
 });
 
 app.get("/logout", (req: Request, res: Response, next: NextFunction): void => {
-  SpotifyApi.resetAccess();
+  spotifyApi.resetAccess();
   res.status(200).redirect("/");
 });
 
