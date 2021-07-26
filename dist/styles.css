@@ -13,8 +13,7 @@ html {
   background-color: white;
 }
 
-/* #cecece,*/
-.landingContainer {
+.landing-container {
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -26,7 +25,7 @@ html {
   animation: gradientWave 16s ease infinite;
 }
 
-.spotifyIcon {
+.spotify-icon {
   height: 40px;
   margin-right: 10px;
   width: auto;
