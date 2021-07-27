@@ -1,12 +1,14 @@
 import React from "react";
+import { useStyles } from "./styles/Navigation.styles";
 
 const Navigation: React.FC = () => {
+  const classes = useStyles();
   return (
-    <nav>
-      <a href="/">
-        <img className="nav-logo" src="../../assets/apa.png" />
+    <nav className={classes.nav}>
+      <img src="../../assets/apa.png" />
+      <a className={classes.logout} href="/logout">
+        Logout
       </a>
-      <a href="/logout">Logout</a>
     </nav>
   );
 };
