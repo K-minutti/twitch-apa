@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import Search from "./Search";
 import SearchResults from "./SearchResults";
+import AudioPlayer from "./AudioPlayer";
 import { getSpotifySearchResults } from "../controllers/spotifyServices";
 import { EmptySearchResults } from "../controllers/types";
 
@@ -33,13 +34,7 @@ const MusicConsole: React.FC = () => {
     <div>
       <Search search={searchSpotify} searchQuery={searchQuery} />
       <SearchResults resultItems={searchResults} setTrack={setTrack} />
-      <figure>
-        <figcaption>Spotify preview url test</figcaption>
-        <audio controls src={currentTrack.preview_url}>
-          Your browser does not support the
-          <code>audio</code> element.
-        </audio>
-      </figure>
+      <AudioPlayer />
     </div>
   );
 };
