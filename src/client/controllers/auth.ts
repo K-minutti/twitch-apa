@@ -1,5 +1,5 @@
 import axios from "axios";
-import { AuthenticationResponse } from "./types/controllers";
+import { AuthenticationResponse } from "./types";
 
 export const isLoggedIn = async (): Promise<boolean> => {
   return axios
