@@ -1,31 +1,8 @@
 import React from "react";
-import {
-  ThemeProvider,
-  createTheme,
-  makeStyles,
-  createStyles,
-  Theme,
-} from "@material-ui/core/styles";
-import { green } from "@material-ui/core/colors";
 import TextField from "@material-ui/core/TextField";
-
-const theme = createTheme({
-  palette: {
-    primary: green,
-  },
-});
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    margin: {
-      margin: theme.spacing(1),
-      width: "800px",
-    },
-  })
-);
-
-//call function in home to call our api service and return a list of render tracks
-//
+import { useStyles } from "./styles/Search.styles";
+import { ThemeProvider } from "@material-ui/core/styles";
+import { apaTheme } from "./styles/Theme.styles";
 type Props = {
   search: (event: React.ChangeEvent<HTMLInputElement>) => void;
   searchQuery: string;
@@ -34,10 +11,11 @@ type Props = {
 const Search: React.FC<Props> = ({ search, searchQuery }) => {
   const classes = useStyles();
   return (
-    <form>
-      <ThemeProvider theme={theme}>
+    <form className={classes.searchControls}>
+      <ThemeProvider theme={apaTheme}>
         <TextField
-          className={classes.margin}
+          fullWidth
+          className={classes.searchBar}
           type="search"
           variant="outlined"
           id="mui-theme-provider-outlined-input"

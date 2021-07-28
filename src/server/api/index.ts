@@ -19,9 +19,9 @@ apiRouter.get(
 );
 
 apiRouter.get(
-  "/search",
+  "/search/:q",
   (req: Request, res: Response, next: NextFunction): void => {
-    const queryParams: string = String(req.query.q);
+    const queryParams: string = String(req.params.q);
     const headerAuthorization: string =
       spotifyApi.getServicesAuthorizationHeader();
 

@@ -24,6 +24,10 @@ export interface Track {
   uri: string;
 }
 
+export interface EmptyTrack {
+  preview_url: string;
+}
+
 export interface TracksResponse {
   href: string;
   items: Track[];

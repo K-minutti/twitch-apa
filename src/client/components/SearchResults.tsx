@@ -10,22 +10,31 @@ type Props = {
   setTrack: (track: Track) => void;
 };
 
-// Convert Material ui display card , nicely styled passin function to set track as current track
-//searchResults["items"]
 const SearchResults: React.FC<Props> = ({ resultItems, setTrack }) => {
   return (
-    <div>
+    <div
+      style={{
+        position: "absolute",
+        top: "112px",
+        bottom: "96px",
+        left: "0px",
+        right: "0px",
+        overflow: "auto",
+        padding: "12px 0px",
+        borderTop: "solid #212121 1px",
+      }}
+    >
       {resultItems &&
         resultItems["items"].map((track: Track) => {
           return (
             <div key={track.id}>
               <img
                 src={track.album.images[1].url}
-                height="150px"
-                width="150px"
+                height="135px"
+                width="135px"
               />
-              <h4>{track.name}</h4>
-              <h5>{track.artists[0].name}</h5>
+              <h5>{track.name}</h5>
+              <h6>{track.artists[0].name}</h6>
               <button onClick={() => setTrack(track)}>Play</button>
             </div>
           );

@@ -1,14 +1,29 @@
 import React, { useState, useEffect, useCallback } from "react";
 import Search from "./Search";
 import SearchResults from "./SearchResults";
+import AudioPlayer from "./AudioPlayer";
 import { getSpotifySearchResults } from "../controllers/spotifyServices";
-import { EmptySearchResults } from "../controllers/types";
+import { EmptySearchResults, Track } from "../controllers/types";
 
 const MusicConsole: React.FC = () => {
   const initialResultsState: EmptySearchResults = { items: [] };
+  const initialTrackState: Track = {
+    album: { images: [] },
+    artists: [],
+    duration_ms: 0,
+    id: "",
+    name: "",
+    preview_url: "",
+    uri: "",
+  };
+
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState(initialResultsState);
-  const [currentTrack, setCurrentTrack] = useState({ preview_url: "" });
+  const [currentTrack, setCurrentTrack] = useState(initialTrackState);
+
+  useEffect(() => {
+    getSpotifySearchResults(searchQuery).then(setSearchResults);
+  }, [searchQuery]);
 
   const searchSpotify = useCallback(
     (event) => setSearchQuery(event.target.value),
@@ -16,30 +31,15 @@ const MusicConsole: React.FC = () => {
   );
 
   const setTrack = useCallback((track) => {
-    console.log("TRACK Played", track);
+    console.log("TRACK SET-->", track);
     setCurrentTrack(track);
   }, []);
-
-  useEffect(() => {
-    if (searchQuery != "") {
-      getSpotifySearchResults(searchQuery).then(setSearchResults);
-    }
-  }, [searchQuery]);
-
-  //useEffect on track change play track
-  // <AudioPlayer currentTrack={currentTrack}> ->
 
   return (
     <div>
       <Search search={searchSpotify} searchQuery={searchQuery} />
       <SearchResults resultItems={searchResults} setTrack={setTrack} />
-      <figure>
-        <figcaption>Spotify preview url test</figcaption>
-        <audio controls src={currentTrack.preview_url}>
-          Your browser does not support the
-          <code>audio</code> element.
-        </audio>
-      </figure>
+      <AudioPlayer currentTrack={currentTrack} />
     </div>
   );
 };
