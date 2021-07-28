@@ -3,19 +3,22 @@ import { makeStyles, createStyles } from "@material-ui/core/styles";
 export const useStyles = makeStyles(() =>
   createStyles({
     nav: {
-      height: "45px",
+      top: 0,
+      height: 50,
+      position: "fixed",
       width: "100%",
       display: "flex",
       flexDirection: "row",
       alignItems: "center",
       padding: "10px 30px",
+      background: "white",
     },
 
     logout: {
-      position: "absolute",
       right: 50,
+      position: "fixed",
       left: "auto",
-      fontSize: 20,
+      fontSize: 18,
     },
   })
 );
