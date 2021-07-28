@@ -1,29 +1,26 @@
 import React from "react";
 import { Button } from "@material-ui/core";
-import { useStyles } from "./Login.style";
-import { createTheme, ThemeProvider } from "@material-ui/core/styles";
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: "#000",
-    },
-    secondary: {
-      main: "#f44336",
-    },
-  },
-});
+import { useStyles } from "./styles/Login.styles";
 
 const Login: React.FC = () => {
+  const classes = useStyles();
   return (
-    <div className="landing-container">
-      <img src="../../assets/apalanding-logo.png" />
-      <button>
+    <div id="landingPage" className={classes.landingContainer}>
+      <img
+        className={classes.apalanding}
+        src="../../assets/apalanding-logo.png"
+      />
+      <Button className={classes.loginButton}>
+        <img
+          className={classes.spotifyLogo}
+          src="../../assets/Spotify_Icon.png"
+        />
         <a href="/login">
-          <img className="spotify-icon" src="../../assets/Spotify_Icon.png" />
-          Login With Spotify
+          <p className={classes.text}>Login With Spotify</p>
         </a>
-      </button>
-      <img className="waves" src="../../assets/waves.png" />
+      </Button>
+
+      <img className={classes.waves} src="../../assets/waves.png" />
     </div>
   );
 };

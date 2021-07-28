@@ -29,29 +29,8 @@ a:hover {
   cursor: pointer;
 }
 
-.landing-container {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
-  background: linear-gradient(-75deg, #fbfbfb, #fff, #dbdbdb, #fefefe);
-  background-size: 400% 400%;
+#landingPage {
   animation: gradientWave 16s ease infinite;
-}
-
-.spotify-icon {
-  height: 40px;
-  margin-right: 10px;
-  width: auto;
-}
-
-.waves {
-  width: 100%;
-  height: auto;
-  min-height: 130px;
-  align-self: flex-end;
 }
 
 @keyframes gradientWave {
