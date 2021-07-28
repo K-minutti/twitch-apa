@@ -52,7 +52,6 @@ export class SpotifyApiWrapper {
         this.refreshToken = response.data["refresh_token"];
         this.expiresIn = response.data["expires_in"];
         this.tokenType = response.data["token_type"];
-        console.log(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -80,7 +79,6 @@ export class SpotifyApiWrapper {
         this.accessToken = response.data["access_token"];
         this.refreshToken = response.data["refresh_token"];
         this.expiresIn = response.data["expires_in"];
-        console.log(response.data);
       })
       .catch((error) => {
         console.log(error);
