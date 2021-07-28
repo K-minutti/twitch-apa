@@ -21,6 +21,7 @@ const TrackCard: React.FC<Props> = ({ track, setTrack }) => {
       className={classes.container}
       raised
       onMouseEnter={() => setShowPlayIcon(true)}
+      onMouseOver={() => setShowPlayIcon(true)}
       onMouseLeave={() => setShowPlayIcon(false)}
     >
       <div className={classes.imageContainer}>

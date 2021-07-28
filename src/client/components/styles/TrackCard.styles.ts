@@ -15,7 +15,7 @@ export const useStyles = makeStyles(() =>
       alighItems: "center",
       justifyContent: "center",
       "&:hover": {
-        background: "#F4F4F4",
+        background: "#EEEEEE",
       },
     },
     imageContainer: {
