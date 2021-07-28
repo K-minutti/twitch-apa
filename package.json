@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build:prod": "NODE_OPTIONS=--max-old-space-size=5120 webpack production",
-    "client": "webpack --watch --mode development --devtool inline-source-map",
+    "build:prod": "webpack --mode=production",
+    "client": "webpack --watch --mode=development --devtool inline-source-map",
     "start": "npm run build:prod && npm run server",
     "server": "tsc -p tsconfig.server.json && node server/",
     "dev": "npm run client & nodemon",
