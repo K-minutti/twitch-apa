@@ -1,5 +1,6 @@
 import React from "react";
 import TrackCard from "./TrackCard";
+import Grid from "@material-ui/core/Grid";
 import {
   Track,
   TracksResponse,
@@ -15,12 +16,12 @@ type Props = {
 const SearchResults: React.FC<Props> = ({ resultItems, setTrack }) => {
   const classes = useStyles();
   return (
-    <div className={classes.searchResultsContainer}>
+    <Grid container className={classes.searchResultsContainer}>
       {resultItems &&
         resultItems["items"].map((track: Track) => {
-          return <TrackCard track={track} setTrack={setTrack} />;
+          return <TrackCard key={track.id} track={track} setTrack={setTrack} />;
         })}
-    </div>
+    </Grid>
   );
 };
 

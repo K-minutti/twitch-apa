@@ -6,11 +6,14 @@ export const useStyles = makeStyles((theme: Theme) =>
       position: "absolute",
       top: "112px",
       bottom: "96px",
-      left: "0px",
-      right: "0px",
+      left: 0,
+      right: 0,
       overflow: "auto",
-      padding: "12px 0px",
+      padding: "20px",
       borderTop: "solid #212121 1px",
+      display: "flex",
+      flexWrap: "wrap",
+      justifyContent: "center",
     },
   })
 );
