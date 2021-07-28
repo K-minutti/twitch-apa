@@ -1,15 +1,24 @@
-import { makeStyles, createStyles } from "@material-ui/core/styles";
+import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 
-export const useStyles = makeStyles(() =>
+export const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    searchBar: {
-      border: "solid blue 2px",
-      height: "45px",
-      width: "100%",
+    searchControls: {
+      backgroundColor: "white",
+      position: "fixed",
       display: "flex",
       flexDirection: "row",
       alignItems: "center",
-      padding: "10px 30px",
+      justifyContent: "center",
+      height: 64,
+      width: "100%",
+      top: 48,
+    },
+    searchBar: {
+      height: 44,
+      width: 680,
+      "& .MuiOutlinedInput-input": {
+        padding: "4px 14px",
+      },
     },
   })
 );
