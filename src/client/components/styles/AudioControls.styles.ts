@@ -22,6 +22,7 @@ export const useStyles = makeStyles((theme: Theme) =>
       flexDirection: "column",
       alignItems: "center",
       justifySelf: "center",
+      padding: "0px 4px",
       flexGrow: 1,
     },
     volumeContainer: {
@@ -34,7 +35,7 @@ export const useStyles = makeStyles((theme: Theme) =>
       display: "flex",
       flexDirection: "row",
       alignItems: "center",
-      justifyContent: "space-around",
+      justifyContent: "center",
       padding: "0px 8px",
     },
 
