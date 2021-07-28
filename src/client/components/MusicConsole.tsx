@@ -3,16 +3,23 @@ import Search from "./Search";
 import SearchResults from "./SearchResults";
 import AudioPlayer from "./AudioPlayer";
 import { getSpotifySearchResults } from "../controllers/spotifyServices";
-import { EmptySearchResults, Track, EmptyTrack } from "../controllers/types";
+import { EmptySearchResults, Track } from "../controllers/types";
 
 const MusicConsole: React.FC = () => {
   const initialResultsState: EmptySearchResults = { items: [] };
-  const initialTrackState: EmptyTrack = { preview_url: "" };
+  const initialTrackState: Track = {
+    album: { images: [] },
+    artists: [],
+    duration_ms: 0,
+    id: "",
+    name: "",
+    preview_url: "",
+    uri: "",
+  };
+
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState(initialResultsState);
-  const [currentTrack, setCurrentTrack] = useState<Track | EmptyTrack>(
-    initialTrackState
-  );
+  const [currentTrack, setCurrentTrack] = useState(initialTrackState);
 
   useEffect(() => {
     getSpotifySearchResults(searchQuery).then(setSearchResults);
