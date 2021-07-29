@@ -1,4 +1,4 @@
-import { Credentials } from "./types/credentials";
+import { credentials } from "./spotifyCredentials";
 import { Buffer } from "buffer";
 import axios from "axios";
 
@@ -6,14 +6,11 @@ export class SpotifyApiWrapper {
   clientId: string = "";
   clientSecret: string = "";
   redirectURI: string = "";
+  tokenType: string = "Brearer";
   scopes: string = "";
-  tokenType: string = "";
-  accessToken: string = "";
-  refreshToken: string = "";
-  expiresIn: number = 0;
   accountURL: string = "https://accounts.spotify.com/";
 
-  constructor(credentials: Credentials) {
+  constructor() {
     this.clientId = credentials.clientId;
     this.clientSecret = credentials.clientSecret;
     this.redirectURI = credentials.redirectURI;
@@ -34,8 +31,8 @@ export class SpotifyApiWrapper {
     );
   }
 
-  getAccessToken(code: string): void {
-    axios({
+  getAccessToken(code: string): Promise<any> {
+    return axios({
       url: this.accountURL + "api/token",
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -46,20 +43,11 @@ export class SpotifyApiWrapper {
         client_id: this.clientId,
         client_secret: this.clientSecret,
       },
-    })
-      .then((response) => {
-        this.accessToken = response.data["access_token"];
-        this.refreshToken = response.data["refresh_token"];
-        this.expiresIn = response.data["expires_in"];
-        this.tokenType = response.data["token_type"];
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    });
   }
 
-  refreshAccessToken(): void {
-    axios({
+  refreshAccessToken(refreshToken: string): Promise<any> {
+    return axios({
       url: this.accountURL + "api/token",
       method: "POST",
       headers: {
@@ -72,33 +60,8 @@ export class SpotifyApiWrapper {
       },
       params: {
         grant_type: "refresh_token",
-        refresh_token: this.refreshToken,
+        refresh_token: refreshToken,
       },
-    })
-      .then((response) => {
-        this.accessToken = response.data["access_token"];
-        this.refreshToken = response.data["refresh_token"];
-        this.expiresIn = response.data["expires_in"];
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
-
-  isUserAuthorized(): boolean {
-    const authorized: boolean =
-      this.accessToken != "" && this.refreshToken != "" && this.expiresIn != 0;
-    return authorized;
-  }
-
-  resetAccess(): void {
-    this.accessToken = "";
-    this.refreshToken = "";
-    this.tokenType = "";
-    this.expiresIn = 0;
-  }
-
-  getServicesAuthorizationHeader(): string {
-    return this.tokenType + " " + this.accessToken;
+    });
   }
 }

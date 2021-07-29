@@ -1,13 +1,10 @@
 import express, { Request, Response, NextFunction } from "express";
 import { SpotifyApiWrapper } from "./spotify/spotifyApi";
-import { credentials } from "./spotify/spotifyCredentials";
-import authRouter from "./auth";
-import apiRouter from "./api";
+import cookieParser from "cookie-parser";
 import path from "path";
 
 const app = express();
-
-export const spotifyApi = new SpotifyApiWrapper(credentials);
+app.use(cookieParser());
 
 /* Middleware  - Body parsing */
 app.use(express.json());
@@ -16,31 +13,65 @@ app.use(express.urlencoded({ extended: true }));
 /* Static files */
 app.use(express.static(path.join(__dirname, "../dist/")));
 
-/* Routes */
-app.use("/auth", authRouter);
-app.use("/api", apiRouter);
-
 /* Spotify Authentication */
 app.get("/login", (req: Request, res: Response, next: NextFunction): void => {
+  const spotifyApi = new SpotifyApiWrapper();
   const authorizeURL: string = spotifyApi.getAuthorizeURL();
   res.redirect(authorizeURL);
 });
 
-/* Spotify Auth Callback - Getting and setting tokens on SpotifyApi class for future requests */
+/* Spotify Auth Callback - Sending Cookies to use for future Requests*/
 app.get("/success", (req: Request, res: Response, next: NextFunction): void => {
   const code: string = String(req.query.code);
-  spotifyApi.getAccessToken(code);
-  res.redirect("/");
+  const spotifyApi = new SpotifyApiWrapper();
+  spotifyApi
+    .getAccessToken(code)
+    .then((response) => {
+      const expiresInTime: number = response.data["expires_in"];
+      const accessToken: string = response.data["access_token"];
+      const refreshToken: string = response.data["refresh_token"];
+      const expirationTimeStamp: Date = new Date(
+        Number(new Date()) + expiresInTime * 1000
+      );
+      res.cookie("token", accessToken, {
+        expires: expirationTimeStamp,
+        httpOnly: false,
+      });
+      res.cookie("refresh", refreshToken);
+      res.redirect("/");
+    })
+    .catch((error) => {
+      res.redirect("/");
+    });
 });
 
+/* Request Spotify for new access token and updating cookie*/
 app.get("/refresh", (req: Request, res: Response, next: NextFunction): void => {
-  spotifyApi.refreshAccessToken();
-  res.sendStatus(200);
+  const refreshToken: string = String(req.query.refreshToken);
+  const spotifyApi = new SpotifyApiWrapper();
+  spotifyApi
+    .refreshAccessToken(refreshToken)
+    .then((response) => {
+      console.log(response.data);
+      const expiresInTime: number = response.data["expires_in"];
+      const expirationTimeStamp: Date = new Date(
+        Number(new Date()) + expiresInTime * 1000
+      );
+      res.cookie("token", response.data["access_token"], {
+        expires: expirationTimeStamp,
+        httpOnly: false,
+      });
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      res.sendStatus(400);
+    });
 });
 
 app.get("/logout", (req: Request, res: Response, next: NextFunction): void => {
-  spotifyApi.resetAccess();
-  res.status(200).redirect("/");
+  res.clearCookie("token");
+  res.clearCookie("refresh");
+  res.status(204).redirect("/");
 });
 
 // Root
