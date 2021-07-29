@@ -7,11 +7,10 @@ export const getSpotifySearchResults = (
 ): Promise<TracksResponse | EmptySearchResults> => {
   const servicesURL: string = "https://api.spotify.com/v1/";
   return axios({
-    url: servicesURL + "search?",
+    url: servicesURL + `search?q=${query}`,
     method: "GET",
     headers: { Authorization: "Bearer" + " " + token },
     params: {
-      query: query,
       type: "track",
       market: "from_token",
       limit: "50",
