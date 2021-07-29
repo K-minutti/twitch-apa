@@ -4,7 +4,7 @@ import SearchResults from "./SearchResults";
 import AudioPlayer from "./AudioPlayer";
 import { getSpotifySearchResults } from "../controllers/spotifyServices";
 import { EmptySearchResults, Track } from "../controllers/types";
-import { refreshTokens } from "../controllers/auth";
+import { CookiesParam } from "../controllers/auth";
 
 const MusicConsole: React.FC = () => {
   const initialResultsState: EmptySearchResults = { items: [] };
@@ -23,7 +23,15 @@ const MusicConsole: React.FC = () => {
   const [currentTrack, setCurrentTrack] = useState(initialTrackState);
 
   useEffect(() => {
-    getSpotifySearchResults(searchQuery).then(setSearchResults);
+    const accessTokenArray: CookiesParam =
+      document.cookie.match(/token=([^;]*).*$/);
+    const accessToken: string | null = accessTokenArray
+      ? accessTokenArray[1]
+      : null;
+    if (accessToken) {
+      console.log(accessToken);
+      getSpotifySearchResults(searchQuery, accessToken).then(setSearchResults);
+    }
   }, [searchQuery]);
 
   const searchSpotify = useCallback(
