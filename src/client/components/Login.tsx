@@ -7,20 +7,28 @@ const Login: React.FC = () => {
   return (
     <div id="landingPage" className={classes.landingContainer}>
       <img
+        alt="Apa image logo"
         className={classes.apalanding}
         src="../../assets/apalanding-logo.png"
       />
-      <Button className={classes.loginButton}>
+      <Button
+        aria-label="Click on button to login in using Spotify this will redirect to a new page"
+        href="/login"
+        className={classes.loginButton}
+      >
         <img
+          alt="Spotify Icon"
           className={classes.spotifyLogo}
           src="../../assets/Spotify_Icon.png"
         />
-        <a href="/login">
-          <p className={classes.text}>Login With Spotify</p>
-        </a>
+        <p className={classes.text}>Login With Spotify</p>
       </Button>
 
-      <img className={classes.waves} src="../../assets/waves.png" />
+      <img
+        alt="Grey waves image"
+        className={classes.waves}
+        src="../../assets/waves.png"
+      />
     </div>
   );
 };

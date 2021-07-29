@@ -1,7 +1,3 @@
-export type AuthenticationResponse = {
-  authorized: boolean;
-};
-
 interface AlbumImage {
   url: string;
 }
