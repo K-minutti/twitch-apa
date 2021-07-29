@@ -27,6 +27,9 @@ export const useStyles = makeStyles((theme: Theme) =>
     },
     volumeContainer: {
       flexGrow: 0,
+      [theme.breakpoints.down(520)]: {
+        display: "none",
+      },
     },
     vol: {
       width: 200,
@@ -37,6 +40,9 @@ export const useStyles = makeStyles((theme: Theme) =>
       alignItems: "center",
       justifyContent: "center",
       padding: "0px 8px",
+      [theme.breakpoints.down(480)]: {
+        display: "none",
+      },
     },
 
     trackProgress: {

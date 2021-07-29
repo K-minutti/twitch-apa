@@ -25,11 +25,26 @@ const TrackCard: React.FC<Props> = ({ track, setTrack }) => {
       onMouseLeave={() => setShowPlayIcon(false)}
     >
       <div className={classes.imageContainer}>
-        <img src={track.album.images[1].url} height="120px" width="120px" />
+        <img
+          alt={`Image of song titled ${track.name}`}
+          src={track.album.images[1].url}
+          height="120px"
+          width="120px"
+        />
       </div>
       <CardContent>
-        <h4 className={classes.title}>{track.name}</h4>
-        <h5 className={classes.name}>{track.artists[0].name}</h5>
+        <h4
+          aria-label={`Display text of track ${track.name}`}
+          className={classes.title}
+        >
+          {track.name}
+        </h4>
+        <h5
+          aria-label={`Display text of artists for track ${track.name}`}
+          className={classes.name}
+        >
+          {track.artists[0].name}
+        </h5>
       </CardContent>
       {showPlayIcon && (
         <button
@@ -37,6 +52,11 @@ const TrackCard: React.FC<Props> = ({ track, setTrack }) => {
           onClick={() => setTrack(track)}
           disabled={previewNullDisableButton}
           onMouseLeave={() => setShowPlayIcon(false)}
+          aria-label={`${
+            previewNullDisableButton
+              ? "This song is not playable"
+              : "Click on button to play track this track from search results."
+          }`}
         >
           <PlayArrowRounded className={classes.playIcon} />
           Play

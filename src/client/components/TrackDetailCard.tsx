@@ -13,7 +13,12 @@ const TrackDetailCard: React.FC<Props> = ({ image, title, artist }) => {
   const classes = useStyles();
   return (
     <Card className={classes.container} variant="outlined">
-      <img src={image} height="60px" width="60px" />
+      <img
+        src={image}
+        alt={`Image of song ${title} playing now`}
+        height="60px"
+        width="60px"
+      />
       <CardContent>
         <h5>{title}</h5>
         <h6>{artist}</h6>

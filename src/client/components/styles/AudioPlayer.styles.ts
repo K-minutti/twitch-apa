@@ -13,6 +13,9 @@ export const useStyles = makeStyles((theme: Theme) =>
       flexDirection: "row",
       alignItems: "center",
       justifyContent: "center",
+      [theme.breakpoints.down(460)]: {
+        padding: "6px 6px",
+      },
     },
   })
 );

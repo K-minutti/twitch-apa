@@ -14,6 +14,7 @@ const Search: React.FC<Props> = ({ search, searchQuery }) => {
         fullWidth
         className={classes.searchBar}
         type="search"
+        aria-label="Search bar enter text to search for a song using"
         variant="outlined"
         id="mui-theme-provider-outlined-input"
         placeholder="Search for songs by title, artist ..."

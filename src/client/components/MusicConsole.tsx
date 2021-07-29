@@ -4,6 +4,7 @@ import SearchResults from "./SearchResults";
 import AudioPlayer from "./AudioPlayer";
 import { getSpotifySearchResults } from "../controllers/spotifyServices";
 import { EmptySearchResults, Track } from "../controllers/types";
+import { refreshTokens } from "../controllers/auth";
 
 const MusicConsole: React.FC = () => {
   const initialResultsState: EmptySearchResults = { items: [] };
@@ -31,7 +32,6 @@ const MusicConsole: React.FC = () => {
   );
 
   const setTrack = useCallback((track) => {
-    console.log("TRACK SET-->", track);
     setCurrentTrack(track);
   }, []);
 
