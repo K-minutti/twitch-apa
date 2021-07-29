@@ -29,7 +29,6 @@ const MusicConsole: React.FC = () => {
       ? accessTokenArray[1]
       : null;
     if (accessToken) {
-      console.log(accessToken);
       getSpotifySearchResults(searchQuery, accessToken).then(setSearchResults);
     }
   }, [searchQuery]);
