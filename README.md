@@ -12,7 +12,7 @@
 
 This app integrates the Spotify Web API to allow a user to search for their favorite songs and play a chosen track. It was creatively named apa (audio playback app).
 
-**Hosted site : [link to apa](https://apa-music.herokuapp.com)**
+
 
 <br>
 
