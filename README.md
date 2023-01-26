@@ -1,4 +1,4 @@
-# <p align="center" style="font-weight:800">Twitch Fullstack Take Home</p>
+# <p align="center" style="font-weight:800">APA - Small Music Player</p>
 
 <p align="center">
   <img src="https://media.giphy.com/media/fCBdICflRKixHRGUQA/giphy.gif" />
