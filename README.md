@@ -236,4 +236,4 @@ To build the project using webpack and run server locally.
 
 ## Author
 
-Kevin Minutti. [My Portoflio.](https://kevinminutti.me/)
+Kevin Minutti.
